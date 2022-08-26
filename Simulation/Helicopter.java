@@ -15,24 +15,24 @@ public class Helicopter extends Aircraft implements Flyable {
         int addLongitude = 0;
         int addLatitude = 0;
         int addHeight = 0;
-        switch(weather){
-            case "SUN":
+        switch (weather) {
+            case "SUN" -> {
                 this.log("SUN Helicopter");
                 addLatitude = 10;
                 addHeight = 2;
-                break;
-            case"RAIN":
+            }
+            case "RAIN" -> {
                 this.log("RAIN Helicopter");
                 addLatitude = 5;
-                break;
-            case"FOG":
+            }
+            case "FOG" -> {
                 this.log("FOG Helicopter");
                 addLatitude = 1;
-                break;
-            case"SNOW":
+            }
+            case "SNOW" -> {
                 this.log("SNOW Helicopter");
                 addHeight = -12;
-                break;
+            }
         }
         if(height + addHeight < 1 ){
             this.weatherTower.unregister(this);

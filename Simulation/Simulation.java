@@ -1,10 +1,21 @@
 package Simulation;
 
+import java.io.FileNotFoundException;
+import java.io.PrintWriter;
 import java.util.Vector;
 
 public class Simulation {
     private int cycle;
     private Vector<Instruction> instructions;
+    private static PrintWriter writer;
+
+    static {
+        try {
+            writer = new PrintWriter("out.txt");
+        } catch (FileNotFoundException e) {
+            throw new RuntimeException(e);
+        }
+    }
 
     public Simulation(int cycle, Vector<Instruction> instructions) {
         this.cycle = cycle;
@@ -20,5 +31,10 @@ public class Simulation {
         for(int i=0; i < this.cycle; ++i){
             tower.conditionsChanged();
         }
+        writer.close();
+    }
+
+    static void log(String msg){
+        writer.print(msg);
     }
 }
