@@ -11,7 +11,7 @@ public class Simulation {
 
     static {
         try {
-            writer = new PrintWriter("out.txt");
+            writer = new PrintWriter("simulation.txt");
         } catch (FileNotFoundException e) {
             throw new RuntimeException(e);
         }
@@ -34,7 +34,7 @@ public class Simulation {
         writer.close();
     }
 
-    static void log(String msg){
-        writer.print(msg);
+    static void log(String format, Object... args){
+        writer.printf(format, args);
     }
 }

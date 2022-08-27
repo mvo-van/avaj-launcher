@@ -1,10 +1,7 @@
 package Simulation;
 
-import java.io.FileNotFoundException;
-import java.io.PrintWriter;
 import java.util.HashSet;
 import java.util.Set;
-import java.util.logging.Logger;
 
 public class Tower {
     private Set<Flyable> observers;
@@ -43,7 +40,6 @@ public class Tower {
     }
 
     public void towerSay(Aircraft aircraft, String message){
-        Simulation.log(String.format("Tower says: %s %s.\n", aircraft.getFullname(), message));
-//        System.out.printf("Tower says: %s %s.\n", aircraft.getFullname(), message);
+        Simulation.log("Tower says: %s %s.\n", aircraft.getFullname(), message);
     }
 }

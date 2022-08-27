@@ -5,7 +5,7 @@ public class Coordinates {
     private int latitude;
     private int height;
 
-    public Coordinates(int longitude, int latitude, int height){
+    Coordinates(int longitude, int latitude, int height){
         this.longitude = longitude%360;
         this.latitude = latitude%360;
         if(height > 100){

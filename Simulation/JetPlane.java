@@ -3,7 +3,7 @@ package Simulation;
 public class JetPlane extends Aircraft implements Flyable {
     private WeatherTower weatherTower;
 
-    public JetPlane(String name, Coordinates coordinates){
+    JetPlane(String name, Coordinates coordinates){
         super(name, coordinates, "JetPlane");
     }
     public void updateConditions(){
@@ -17,20 +17,20 @@ public class JetPlane extends Aircraft implements Flyable {
         int addHeight = 0;
         switch(weather){
             case "SUN":
-                this.log("SUN JetPlane");
+                this.log("- Celui qui dit qu'il l'a fait, je lui offre... un sandwich. - À quoi le sandwich ? - À la fraise.");
                 addLatitude = 10;
                 addHeight = 2;
                 break;
             case"RAIN":
-                this.log("RAIN JetPlane");
+                this.log("Oh, ça m’en bouche un groin…");
                 addLatitude = 5;
                 break;
             case"FOG":
-                this.log("FOG JetPlane");
+                this.log("Rho du calme il n’est pas toxique ! D’habitude faut pas me croire mais là il faut !");
                 addLatitude = 1;
                 break;
             case"SNOW":
-                this.log("SNOG JetPlane");
+                this.log("Les dodos n'ont jamais froid, la fin du monde ne passera pas !");
                 addHeight = -7;
                 break;
         }

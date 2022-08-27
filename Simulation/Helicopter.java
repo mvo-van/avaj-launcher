@@ -3,7 +3,7 @@ package Simulation;
 public class Helicopter extends Aircraft implements Flyable {
     private WeatherTower weatherTower;
 
-    public Helicopter(String name, Coordinates coordinates){
+    Helicopter(String name, Coordinates coordinates){
         super(name, coordinates, "Helicopter");
     }
     public void updateConditions(){
@@ -17,20 +17,20 @@ public class Helicopter extends Aircraft implements Flyable {
         int addHeight = 0;
         switch (weather) {
             case "SUN" -> {
-                this.log("SUN Helicopter");
+                this.log("T'as baisé ma femme, j'ai baisé ma femme, allez, on est quitte.");
                 addLatitude = 10;
                 addHeight = 2;
             }
             case "RAIN" -> {
-                this.log("RAIN Helicopter");
+                this.log("J’appelle pas ça voler, j’appelle ça tomber avec panache.");
                 addLatitude = 5;
             }
             case "FOG" -> {
-                this.log("FOG Helicopter");
+                this.log("Pourvu qu’elle y soit, pourvu qu’elle y soit ! Oh, elle y soit !");
                 addLatitude = 1;
             }
             case "SNOW" -> {
-                this.log("SNOW Helicopter");
+                this.log("T'es mal placé dans la chaîne alimentaire pour faire ta grande gueule !");
                 addHeight = -12;
             }
         }

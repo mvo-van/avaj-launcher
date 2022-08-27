@@ -3,7 +3,7 @@ package Simulation;
 public class Baloon extends Aircraft implements Flyable{
     private WeatherTower weatherTower;
 
-    public Baloon(String name, Coordinates coordinates){
+    Baloon(String name, Coordinates coordinates){
         super(name, coordinates, "Baloon");
     }
     public void updateConditions(){
@@ -18,20 +18,20 @@ public class Baloon extends Aircraft implements Flyable{
         int addHeight = 0;
         switch(weather){
             case "SUN":
-                this.log("SUN Baloon");
+                this.log("Mais si c'est pas un animal qui l'a tué, c'est p'tet un végétal !...");
                 addLatitude = 10;
                 addHeight = 2;
                 break;
             case"RAIN":
-                this.log("RAIN Baloon");
+                this.log("Nous vous devons une reconnaissance éternelle !");
                 addLatitude = 5;
                 break;
             case"FOG":
-                this.log("FOG Baloon");
+                this.log("- Tu vois Bob, Ted va au travail à pied. - Tu parles, il a aucun mérite, il a qu’à enjamber le quartier !");
                 addLatitude = 3;
                 break;
             case"SNOW":
-                this.log("SNOW Baloon");
+                this.log("Eh les gars, vous allez vous marrer... J'ai avalé un glaçon !");
                 addHeight = -15;
                 break;
         }

@@ -34,8 +34,7 @@ public class Aircraft {
     }
 
     public void log(String message) {
-        Simulation.log(String.format("%s: %s\n", this.getFullname(), message));
-//        System.out.printf("%s: %s\n", this.getFullname(), message);
+        Simulation.log("%s: %s\n", this.getFullname(), message);
     }
 
     public String getFullname() {
