@@ -1,7 +1,8 @@
 package simulation;
 
 import simulation.exception.InstructionException;
-
+import simulation.exception.NotFileException;
+import simulation.exception.ScenarioNotFound;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 import java.io.BufferedReader;
@@ -46,29 +47,37 @@ public class Simulation {
                 Simulation simulation=new Simulation(argv[0]);
                 simulation.execute();
 
-            } catch (InstructionException e){
+            } catch (ScenarioNotFound | InstructionException e){
                 writer.close();
                 System.out.println(e.toString());
                 System.exit(1);
             }
-
         }else{
-            new InstructionException("No file");
             writer.close();
-            System.exit(1);
+            try{
+                throw new NotFileException();
+            }catch (NotFileException e){
+                System.out.println(e.toString());
+                System.exit(1);
+            }
+            
         }
         writer.close();
     }
 
-    public Simulation(String filename) throws InstructionException, IOException {
+    public Simulation(String filename) throws InstructionException, IOException, ScenarioNotFound{
         Vector<Instruction> instructions = new Vector<Instruction>();
         Pattern cyclePattern = Pattern.compile("^\\d+$");
         Pattern instructionPattern = Pattern.compile("^((Baloon)|(JetPlane)|(Helicopter)) \\w+ \\d+ \\d+ \\d+$");
         int cycles = 0;
         int lines = 1;
+        BufferedReader buffer;
+        try{
+            buffer = new BufferedReader(new FileReader(filename));
+        }catch (FileNotFoundException e){
+            throw new ScenarioNotFound();
+        }
 
-
-            BufferedReader buffer = new BufferedReader(new FileReader(filename));
             String line = buffer.readLine();
             if (cyclePattern.matcher(line).find()){
                 cycles = Integer.parseInt(line);
