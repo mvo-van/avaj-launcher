@@ -1,5 +1,7 @@
 package simulation;
 
+import java.util.Set;
+import java.util.HashSet;
 import simulation.exception.InstructionException;
 import simulation.exception.NotFileException;
 import simulation.exception.ScenarioNotFound;
@@ -67,6 +69,8 @@ public class Simulation {
 
     public Simulation(String filename) throws InstructionException, IOException, ScenarioNotFound{
         Vector<Instruction> instructions = new Vector<Instruction>();
+        Set<String> idAircraft = new HashSet<String>();
+        Instruction tmpInstruction;
         Pattern cyclePattern = Pattern.compile("^\\d+$");
         Pattern instructionPattern = Pattern.compile("^((Baloon)|(JetPlane)|(Helicopter)) \\w+ \\d+ \\d+ \\d+$");
         int cycles = 0;
@@ -89,9 +93,15 @@ public class Simulation {
             line = buffer.readLine();
             while(line != null){
                 ++lines;
-
                 if (instructionPattern.matcher(line).find()){
-                    instructions.add(new Instruction(line));
+                    tmpInstruction = new Instruction(line);
+                    if (idAircraft.contains(tmpInstruction.name) == true){
+                        throw new InstructionException( String.valueOf(lines) );
+                    }
+                    else{
+                        idAircraft.add(tmpInstruction.name);
+                        instructions.add(tmpInstruction);
+                    }
                 }
                 else {
                     buffer.close();
