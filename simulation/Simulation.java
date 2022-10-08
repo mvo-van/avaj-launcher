@@ -2,6 +2,7 @@ package simulation;
 
 import java.util.Set;
 import java.util.HashSet;
+import simulation.exception.IdAlreadyUseException;
 import simulation.exception.InstructionException;
 import simulation.exception.NotFileException;
 import simulation.exception.ScenarioNotFound;
@@ -49,7 +50,7 @@ public class Simulation {
                 Simulation simulation=new Simulation(argv[0]);
                 simulation.execute();
 
-            } catch (ScenarioNotFound | InstructionException e){
+            } catch (ScenarioNotFound | InstructionException | IdAlreadyUseException e){
                 writer.close();
                 System.out.println(e.toString());
                 System.exit(1);
@@ -67,7 +68,7 @@ public class Simulation {
         writer.close();
     }
 
-    public Simulation(String filename) throws InstructionException, IOException, ScenarioNotFound{
+    public Simulation(String filename) throws InstructionException, IOException, ScenarioNotFound, IdAlreadyUseException{
         Vector<Instruction> instructions = new Vector<Instruction>();
         Set<String> idAircraft = new HashSet<String>();
         Instruction tmpInstruction;
@@ -96,7 +97,7 @@ public class Simulation {
                 if (instructionPattern.matcher(line).find()){
                     tmpInstruction = new Instruction(line);
                     if (idAircraft.contains(tmpInstruction.name) == true){
-                        throw new InstructionException( String.valueOf(lines) );
+                        throw new IdAlreadyUseException(tmpInstruction.name, String.valueOf(lines) );
                     }
                     else{
                         idAircraft.add(tmpInstruction.name);
